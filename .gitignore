@@ -95,3 +95,6 @@ $RECYCLE.BIN/
 *.bak
 *.backup
 *.old
+
+# Screenshots (optional, uncomment if needed)
+# screenshots/
