@@ -1,6 +1,6 @@
-# TaskbarSystemMonitor (TSM)
+# TransparentSystemMonitor (TSM)
 
-Windows 实时硬件监控系统
+Windows 实时硬件监控系统 - 透明悬浮窗设计
 
 ## 📊 功能特性
 
@@ -150,10 +150,10 @@ Windows 实时硬件监控系统
 ## 项目结构
 
 ```
-TaskbarSystemMonitor/
+TransparentSystemMonitor/
 ├── main.py                 # 程序入口
 ├── data_engine.py          # 数据采集模块
-├── taskbar_integration.py  # 任务栏嵌入模块
+├── window_positioning.py   # 窗口定位模块（可拖动透明窗口）
 ├── main_window.py          # 主界面模块（可拖动透明窗口）
 ├── system_tray.py          # 托盘管理模块
 ├── dashboard.py            # Dashboard 弹窗
@@ -161,7 +161,7 @@ TaskbarSystemMonitor/
 ├── utils.py                # 工具函数
 ├── requirements.txt        # Python 依赖
 ├── README.md               # 项目说明
-└── USAGE_GUIDE.md          # 详细使用指南
+└── OPEN_SOURCE_NOTICE.md   # 开源许可证声明
 ```
 
 ## 技术实现

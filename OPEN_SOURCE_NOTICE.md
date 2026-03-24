@@ -60,5 +60,5 @@ MIT License 是最宽松的开源许可证之一，它：
 
 ---
 
-**TaskbarSystemMonitor v1.0.0**  
-*Windows 实时硬件监控系统*
+**TransparentSystemMonitor v1.0.0**  
+*Windows 实时硬件监控系统 - 透明悬浮窗设计*

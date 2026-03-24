@@ -1,6 +1,6 @@
 """
-TaskbarSystemMonitor (TSM) - 主程序入口
-Windows 11 任务栏嵌入式硬件监控系统
+TransparentSystemMonitor (TSM) - 主程序入口
+Windows 实时硬件监控系统 - 透明悬浮窗设计
 """
 import sys
 import ctypes
@@ -9,7 +9,7 @@ from PySide6.QtCore import QTimer, QEvent
 
 # 导入自定义模块
 from data_engine import DataEngine
-from taskbar_integration import TaskbarIntegration
+from window_positioning import WindowPositioning
 from main_window import MonitorWindow
 from system_tray import SystemTrayManager
 from settings_manager import SettingsManager
@@ -55,14 +55,14 @@ class Application(QApplication):
         # 设置管理器
         self.settings_manager = SettingsManager()
         
-        # 任务栏集成
-        self.taskbar_integration = TaskbarIntegration()
+        # 窗口定位
+        self.window_positioning = WindowPositioning()
         
         # 数据采集引擎
         refresh_rate = self.settings_manager.get_setting('refresh_rate')
         self.data_engine = DataEngine(update_interval=refresh_rate)
         
-        # 主窗口 - 使用可拖动版本，不需要 taskbar_integration
+        # 主窗口 - 可拖动透明窗口
         self.monitor_window = MonitorWindow()
         
         # 系统托盘
@@ -78,9 +78,6 @@ class Application(QApplication):
         
         # 数据更新 -> Dashboard（如果存在）
         self.data_engine.data_updated.connect(self.on_data_updated_for_dashboard)
-        
-        # 不再需要位置更新连接
-        # self.taskbar_integration.position_updated.connect(self.update_monitor_position)
         
         # 托盘显示 Dashboard -> 打开 Dashboard
         self.tray_manager.show_dashboard.connect(self.show_dashboard)
@@ -104,11 +101,6 @@ class Application(QApplication):
         
         # 显示托盘图标
         self.tray_manager.show()
-    
-    def update_monitor_position(self, x, y, width, height):
-        """更新监控窗口位置 - 已禁用，使用手动拖动"""
-        # 不再自动定位，用户手动拖动
-        pass
     
     def show_dashboard(self):
         """显示 Dashboard"""
